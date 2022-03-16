@@ -6,6 +6,7 @@ class App {
 
   constructor() {
     // ...
+    this.app = express();
     this.config();
     // ...
   }
@@ -20,6 +21,9 @@ class App {
 
     this.app.use(accessControl);
     // ...
+    this.app
+      .route('/login')
+      .get();
   }
 
   // ...
