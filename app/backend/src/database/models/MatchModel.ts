@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
 
-class Club extends Model {
+class Match extends Model {
   public id: number;
 
   public home_team: number;
@@ -15,7 +15,7 @@ class Club extends Model {
   public in_progress: boolean;
 }
 
-Club.init({
+Match.init({
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   home_team: { allowNull: false, type: DataTypes.NUMBER },
   home_team_goals: { allowNull: false, type: DataTypes.NUMBER },
@@ -26,7 +26,7 @@ Club.init({
   underscored: true,
   sequelize: db,
   timestamps: false,
-  tableName: 'clubs',
+  tableName: 'matchs',
 });
 
-export default Club;
+export default Match;
