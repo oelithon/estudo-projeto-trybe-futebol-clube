@@ -10,6 +10,7 @@ export default class Route {
       .route('/login')
       .get((req, res) => {
         res.status(200).json({ message: 'Tudo certo!' });
-      });
+      })
+      .post();
   }
 }
