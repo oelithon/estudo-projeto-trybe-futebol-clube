@@ -1,4 +1,5 @@
 import * as express from 'express';
+import Routers from './database/routers/Routers';
 
 class App {
   public app: express.Express;
@@ -20,10 +21,13 @@ class App {
     };
 
     this.app.use(accessControl);
-    // ...
-    this.app
-      .route('/login')
-      .get();
+
+    const path = '/';
+
+    this.app.use(
+      path,
+      new Routers().router,
+    );
   }
 
   // ...
