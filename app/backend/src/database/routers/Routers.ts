@@ -1,4 +1,5 @@
 import * as express from 'express';
+import { Request, Response } from 'express';
 import Login from '../controllers/LoginController';
 
 export default class Route {
@@ -9,7 +10,9 @@ export default class Route {
 
     this.router
       .route('/login')
-      .get()
+      .get((_req: Request, res: Response) => {
+        res.status(200).json({ message: 'ok' });
+      })
       .post(Login);
   }
 }
