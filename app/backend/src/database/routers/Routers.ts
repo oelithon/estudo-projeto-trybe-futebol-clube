@@ -1,4 +1,5 @@
 import * as express from 'express';
+import Login from '../controllers/LoginController';
 
 export default class Route {
   public router: express.Router;
@@ -8,9 +9,7 @@ export default class Route {
 
     this.router
       .route('/login')
-      .get((req, res) => {
-        res.status(200).json({ message: 'Tudo certo!' });
-      })
-      .post();
+      .get()
+      .post(Login);
   }
 }
