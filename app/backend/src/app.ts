@@ -1,15 +1,13 @@
 import * as express from 'express';
+
 import Routers from './database/routers/Routers';
 
 class App {
   public app: express.Express;
-  // ...
 
   constructor() {
-    // ...
     this.app = express();
     this.config();
-    // ...
   }
 
   private config():void {
@@ -21,6 +19,7 @@ class App {
     };
 
     this.app.use(accessControl);
+    this.app.use(express.json());
 
     const path = '/';
 
