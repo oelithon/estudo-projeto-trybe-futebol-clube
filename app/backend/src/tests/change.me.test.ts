@@ -28,6 +28,12 @@ describe('As requisições no endpoint .post na rota /login', () => {
   after(() => {
     (UserModel.findOne as sinon.SinonStub).restore();
   });
+
+  it('deveria retornar status 200', async () => {
+    const result = await chai.request(app).post('/login');
+
+    expect(result).to.have.status(200);
+  });
 });
 
 describe('As requisições no endpoint .get na rota /login', () => {
@@ -37,4 +43,4 @@ describe('As requisições no endpoint .get na rota /login', () => {
 
     expect(result).to.have.status(200);
   });
-})
+});
