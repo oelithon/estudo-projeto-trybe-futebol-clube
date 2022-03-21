@@ -88,12 +88,36 @@ describe('Quando o campo de "email" está vazio.', () => {
   });
 });
 
+describe('A requisição no endpoint .get na rota /login/validate', () => {
+
+  let chaiHttpResponse: Response;
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjQ3ODg4OTQ3fQ.zIM-o-edSasnGofdcDkeBI3aL4-Q3dFGcrjbZ8PXso4';
+
+  it('deveria retornar status 200', async () => {
+    chaiHttpResponse = await chai.request(app)
+      .get('/login/validate')
+      .set({ authorization: token });
+    
+    expect(chaiHttpResponse).to.have.status(200);
+  });
+});
+
 describe('As requisições no endpoint .get na rota /login', () => {
 
   let chaiHttpResponse: Response;
 
   it('deveria retornar status 200', async () => {
     chaiHttpResponse = await chai.request(app).get('/login');
+    expect(chaiHttpResponse).to.have.status(200);
+  });
+});
+
+describe('As requisições no endpoint .get na rota /clubs', () => {
+
+  let chaiHttpResponse: Response;
+
+  it('deveria retornar status 200', async () => {
+    chaiHttpResponse = await chai.request(app).get('/clubs');
     expect(chaiHttpResponse).to.have.status(200);
   });
 });
