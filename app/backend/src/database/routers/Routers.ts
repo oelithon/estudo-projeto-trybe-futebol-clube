@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { Request, Response } from 'express';
-import Login from '../controllers/LoginController';
+import { Login, LoginValidate } from '../controllers/LoginController';
 
 import { validateEmail, validatePassword } from '../middlewares/validateLogin';
 
@@ -9,6 +9,10 @@ export default class Route {
 
   constructor() {
     this.router = express.Router();
+
+    this.router
+      .route('/login/validate')
+      .get(LoginValidate);
 
     this.router
       .route('/login')
