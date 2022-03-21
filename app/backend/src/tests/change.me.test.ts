@@ -6,7 +6,6 @@ import { app } from '../app';
 import UserModel from '../database/models/UserModel';
 
 import { Response } from 'superagent';
-import { object } from 'joi';
 
 chai.use(chaiHttp);
 
