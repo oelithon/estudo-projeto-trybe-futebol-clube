@@ -20,5 +20,11 @@ export default class Route {
         res.status(200).json({ message: 'ok' });
       })
       .post(validateEmail, validatePassword, Login);
+
+    this.router
+      .route('/clubs')
+      .get((_req: Request, res: Response) => {
+        res.status(200).json({ message: 'ok' });
+      });
   }
 }
