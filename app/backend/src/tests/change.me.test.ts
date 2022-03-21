@@ -51,6 +51,44 @@ describe('Quando o login foi feito com sucesso.', () => {
   });
 });
 
+describe('Quando o campo de "email" está vazio.', () => {
+
+  let chaiHttpResponse: Response;
+
+  before(async () => {
+
+    sinon
+      .stub(UserModel, "findOne")
+      .resolves({
+        id: 1,
+		    username: 'Admin',
+		    role: 'admin',
+		    email: 'admin@admin.com',
+		    password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW',
+      } as UserModel);
+    
+    chaiHttpResponse = await chai.request(app)
+      .post('/login')
+      .send({
+        "password": "secret_admin"
+      });
+  });
+
+  after(() => {
+    (UserModel.findOne as sinon.SinonStub).restore();
+  });
+
+  it('deveria retornar uma mensagem de erro', async () => {
+    
+    expect(chaiHttpResponse).to.be.an('object');
+  });
+
+  it('deveria retornar status 401', async () => {
+
+    expect(chaiHttpResponse).to.have.status(401);
+  });
+});
+
 describe('As requisições no endpoint .get na rota /login', () => {
 
   let chaiHttpResponse: Response;
