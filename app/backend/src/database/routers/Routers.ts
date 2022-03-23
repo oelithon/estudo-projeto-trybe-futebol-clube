@@ -24,6 +24,10 @@ export default class Route {
       .post(validateEmail, validatePassword, Login);
 
     this.router
+      .route('/clubs/:id')
+      .get();
+
+    this.router
       .route('/clubs')
       .get(getAllClubs);
   }
