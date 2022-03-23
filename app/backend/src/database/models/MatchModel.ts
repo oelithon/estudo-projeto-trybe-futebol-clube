@@ -4,24 +4,24 @@ import db from '.';
 class Match extends Model {
   public id: number;
 
-  public home_team: number;
+  public homeTeam: number;
 
-  public home_team_goals: number;
+  public homeTeamGoals: number;
 
-  public away_team: number;
+  public awayTeam: number;
 
-  public away_team_goals: number;
+  public awayTeamGoals: number;
 
-  public in_progress: boolean;
+  public inProgress: boolean;
 }
 
 Match.init({
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  home_team: { allowNull: false, type: DataTypes.NUMBER },
-  home_team_goals: { allowNull: false, type: DataTypes.NUMBER },
-  away_team: { allowNull: false, type: DataTypes.NUMBER },
-  away_team_goals: { allowNull: false, type: DataTypes.NUMBER },
-  in_progress: { allowNull: false, type: DataTypes.BOOLEAN },
+  homeTeam: { allowNull: false, type: DataTypes.NUMBER },
+  homeTeamGoals: { allowNull: false, type: DataTypes.NUMBER },
+  awayTeam: { allowNull: false, type: DataTypes.NUMBER },
+  awayTeamGoals: { allowNull: false, type: DataTypes.NUMBER },
+  inProgress: { allowNull: false, type: DataTypes.BOOLEAN },
 }, {
   underscored: true,
   sequelize: db,
