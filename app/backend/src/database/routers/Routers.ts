@@ -2,7 +2,7 @@ import * as express from 'express';
 import { Request, Response } from 'express';
 
 import { Login, LoginValidate } from '../controllers/LoginController';
-import getAllClubs from '../controllers/ClubsController';
+import { getAllClubs, getClubByid } from '../controllers/ClubsController';
 
 import { validateEmail, validatePassword } from '../middlewares/validateLogin';
 
@@ -25,7 +25,7 @@ export default class Route {
 
     this.router
       .route('/clubs/:id')
-      .get();
+      .get(getClubByid);
 
     this.router
       .route('/clubs')
