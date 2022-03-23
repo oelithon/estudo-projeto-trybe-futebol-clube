@@ -1,6 +1,8 @@
 import * as express from 'express';
 import { Request, Response } from 'express';
+
 import { Login, LoginValidate } from '../controllers/LoginController';
+import getAllClubs from '../controllers/ClubsController';
 
 import { validateEmail, validatePassword } from '../middlewares/validateLogin';
 
@@ -23,8 +25,6 @@ export default class Route {
 
     this.router
       .route('/clubs')
-      .get((_req: Request, res: Response) => {
-        res.status(200).json({ message: 'ok' });
-      });
+      .get(getAllClubs);
   }
 }
