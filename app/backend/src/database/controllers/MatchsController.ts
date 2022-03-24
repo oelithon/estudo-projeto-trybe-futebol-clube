@@ -5,6 +5,7 @@ import ClubModel from '../models/ClubModel';
 const getAllMatchs = async (_req: Request, res: Response) => {
   const matchList = await MatchModel.findAll(
     {
+      attributes: { exclude: ['home_team', 'away_team'] },
       include: [
         { model: ClubModel, as: 'homeClub', attributes: { exclude: ['id'] } },
         { model: ClubModel, as: 'awayClub', attributes: { exclude: ['id'] } },
