@@ -5,7 +5,7 @@ import { Login, LoginValidate } from '../controllers/LoginController';
 
 import { validateEmail, validatePassword } from '../middlewares/validateLogin';
 
-export default class Route {
+export default class RouteLogin {
   public router: express.Router;
 
   constructor() {
