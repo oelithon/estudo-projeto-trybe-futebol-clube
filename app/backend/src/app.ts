@@ -2,6 +2,7 @@ import * as express from 'express';
 
 import RouteLogin from './database/routers/routeLogin';
 import RouteClubs from './database/routers/routeClubs';
+import RouteMatchs from './database/routers/routeMatchs';
 
 class App {
   public app: express.Express;
@@ -28,6 +29,7 @@ class App {
       path,
       new RouteLogin().router,
       new RouteClubs().router,
+      new RouteMatchs().router,
     );
   }
 
