@@ -2,7 +2,6 @@ import * as express from 'express';
 import { Request, Response } from 'express';
 
 import { Login, LoginValidate } from '../controllers/LoginController';
-import { getAllClubs, getClubByid } from '../controllers/ClubsController';
 
 import { validateEmail, validatePassword } from '../middlewares/validateLogin';
 
@@ -22,13 +21,5 @@ export default class Route {
         res.status(200).json({ message: 'ok' });
       })
       .post(validateEmail, validatePassword, Login);
-
-    this.router
-      .route('/clubs/:id')
-      .get(getClubByid);
-
-    this.router
-      .route('/clubs')
-      .get(getAllClubs);
   }
 }
