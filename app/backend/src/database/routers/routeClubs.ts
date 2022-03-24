@@ -2,7 +2,7 @@ import * as express from 'express';
 
 import { getAllClubs, getClubByid } from '../controllers/ClubsController';
 
-export default class Route {
+export default class RouteClubs {
   public router: express.Router;
 
   constructor() {
