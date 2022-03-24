@@ -1,6 +1,7 @@
 import * as express from 'express';
 
-import Routers from './database/routers/Routers';
+import RouteLogin from './database/routers/routeLogin';
+import RouteClubs from './database/routers/routeClubs';
 
 class App {
   public app: express.Express;
@@ -25,7 +26,8 @@ class App {
 
     this.app.use(
       path,
-      new Routers().router,
+      new RouteLogin().router,
+      new RouteClubs().router,
     );
   }
 
