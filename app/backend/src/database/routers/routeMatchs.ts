@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { Request, Response } from 'express';
 
-export default class Route {
+export default class RouteMatchs {
   public router: express.Router;
 
   constructor() {
