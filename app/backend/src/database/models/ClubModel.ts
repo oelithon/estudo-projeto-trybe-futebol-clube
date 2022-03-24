@@ -18,11 +18,12 @@ Club.init({
   tableName: 'clubs',
 });
 
-Match.belongsToMany(Club, {
-  as: 'clubId',
-  through: Match,
+Match.belongsTo(Club, {
   foreignKey: 'home_team',
-  otherKey: 'away_team',
+});
+
+Match.belongsTo(Club, {
+  foreignKey: 'away_team',
 });
 
 export default Club;
