@@ -19,6 +19,18 @@ export const validateIdMatch = async (req: Request, res: Response, next: NextFun
   next();
 };
 
+export const validateMatchInProgress = async (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
+
+  const MatchById = await MatchModel.findByPk(id);
+  const { inProgress } = MatchById as NewMatch;
+
+  if (inProgress === false) {
+    res.status(401).json({ message: 'match is already finished' });
+  }
+  next();
+};
+
 export const validateToken = (req: Request, res: Response, next: NextFunction) => {
   try {
     const { authorization } = req.headers;
