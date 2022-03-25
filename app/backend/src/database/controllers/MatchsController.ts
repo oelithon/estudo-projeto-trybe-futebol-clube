@@ -32,5 +32,5 @@ export const finishMatch = async (req: Request, res: Response) => {
     { where: { id } },
   );
 
-  return res.status(201).json({ message: 'Finished Match!' });
+  return res.status(200).json({ message: 'Finished Match!' });
 };
