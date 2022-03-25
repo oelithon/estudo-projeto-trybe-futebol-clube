@@ -23,3 +23,14 @@ export const createMatch = async (req: Request, res: Response) => {
 
   return res.status(201).json(matchCreated);
 };
+
+export const finishMatch = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  await MatchModel.update(
+    { inProgress: false },
+    { where: { id } },
+  );
+
+  return res.status(201).json({ message: 'Finished Match!' });
+};
