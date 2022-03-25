@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as cors from 'cors';
 
 import RouteLogin from './database/routers/routeLogin';
 import RouteClubs from './database/routers/routeClubs';
@@ -22,6 +23,7 @@ class App {
 
     this.app.use(accessControl);
     this.app.use(express.json());
+    this.app.use(cors());
 
     const path = '/';
 
