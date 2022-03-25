@@ -1,6 +1,6 @@
 import * as express from 'express';
 
-import getAllMatchs from '../controllers/MatchsController';
+import { getAllMatchs, createMatch } from '../controllers/MatchsController';
 
 export default class RouteMatchs {
   public router: express.Router;
@@ -10,6 +10,7 @@ export default class RouteMatchs {
 
     this.router
       .route('/matchs')
-      .get(getAllMatchs);
+      .get(getAllMatchs)
+      .post(createMatch);
   }
 }
