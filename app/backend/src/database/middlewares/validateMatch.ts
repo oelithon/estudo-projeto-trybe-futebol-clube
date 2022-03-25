@@ -30,3 +30,15 @@ export const validateToken = (req: Request, res: Response, next: NextFunction) =
   }
   next();
 };
+
+export const validateCreateMatch = (req: Request, res: Response, next: NextFunction) => {
+  const { homeTeam, awayTeam } = req.body;
+  const messageTwoEqualTeams = {
+    message: 'It is not possible to create a match with two equal teams',
+  };
+
+  if (homeTeam === awayTeam) {
+    res.status(401).json(messageTwoEqualTeams);
+  }
+  next();
+};
