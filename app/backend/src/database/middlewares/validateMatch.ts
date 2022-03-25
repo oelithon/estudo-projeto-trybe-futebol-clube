@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import * as jwt from 'jsonwebtoken';
 
 import MatchModel from '../models/MatchModel';
+import NewMatch from '../interfaces/Match';
 
 const secret = fs.readFileSync('./jwt.evaluation.key', 'utf-8');
 
@@ -31,14 +32,24 @@ export const validateToken = (req: Request, res: Response, next: NextFunction) =
   next();
 };
 
-export const validateCreateMatch = (req: Request, res: Response, next: NextFunction) => {
-  const { homeTeam, awayTeam } = req.body;
+export const validateCreateMatch = async (req: Request, res: Response, next: NextFunction) => {
+  const { homeTeam, awayTeam } = req.body as NewMatch;
   const messageTwoEqualTeams = {
     message: 'It is not possible to create a match with two equal teams',
   };
+  const messageNotTeam = { message: 'There is no team with such id!' };
+
+  const seachHomeTeam = await MatchModel.findByPk(homeTeam);
+  const seachAwayTeam = await MatchModel.findByPk(awayTeam);
 
   if (homeTeam === awayTeam) {
-    res.status(401).json(messageTwoEqualTeams);
+    return res.status(401).json(messageTwoEqualTeams);
+  }
+  if (!seachHomeTeam) {
+    return res.status(401).json(messageNotTeam);
+  }
+  if (!seachAwayTeam) {
+    return res.status(401).json(messageNotTeam);
   }
   next();
 };
