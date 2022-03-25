@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import MatchModel from '../models/MatchModel';
 
-const validadeIdMatch = async (req: Request, res: Response, next: NextFunction) => {
+const validateIdMatch = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
 
   const MatchById = await MatchModel.findByPk(id);
@@ -13,4 +13,4 @@ const validadeIdMatch = async (req: Request, res: Response, next: NextFunction) 
   next();
 };
 
-export default validadeIdMatch;
+export default validateIdMatch;
