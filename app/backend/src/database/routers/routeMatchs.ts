@@ -1,7 +1,7 @@
 import * as express from 'express';
 
 import { getAllMatchs, createMatch, finishMatch } from '../controllers/MatchsController';
-import validateIdMatch from '../middlewares/validateMatch';
+import { validateIdMatch, validateToken } from '../middlewares/validateMatch';
 
 export default class RouteMatchs {
   public router: express.Router;
@@ -11,7 +11,7 @@ export default class RouteMatchs {
 
     this.router
       .route('/matchs/:id/finish')
-      .patch(validateIdMatch, finishMatch);
+      .patch(validateToken, validateIdMatch, finishMatch);
 
     this.router
       .route('/matchs')
