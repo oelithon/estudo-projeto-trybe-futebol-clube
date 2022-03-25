@@ -9,7 +9,8 @@ import {
 import {
   validateIdMatch,
   validateToken,
-  validateCreateMatch } from '../middlewares/validateMatch';
+  validateCreateMatch,
+  validateMatchInProgress } from '../middlewares/validateMatch';
 
 export default class RouteMatchs {
   public router: express.Router;
@@ -23,7 +24,7 @@ export default class RouteMatchs {
 
     this.router
       .route('/matchs/:id')
-      .patch(UpdateMatch);
+      .patch(validateToken, validateIdMatch, validateMatchInProgress, UpdateMatch);
 
     this.router
       .route('/matchs')
