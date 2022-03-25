@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import MatchModel from '../models/MatchModel';
 import ClubModel from '../models/ClubModel';
+import NewMatch from '../interfaces/Match';
 
-const getAllMatchs = async (_req: Request, res: Response) => {
+export const getAllMatchs = async (_req: Request, res: Response) => {
   const matchList = await MatchModel.findAll(
     {
       attributes: { exclude: ['home_team', 'away_team'] },
@@ -15,4 +16,10 @@ const getAllMatchs = async (_req: Request, res: Response) => {
   return res.status(200).json(matchList);
 };
 
-export default getAllMatchs;
+export const createMatch = async (req: Request, res: Response) => {
+  const newMatch = req.body as NewMatch;
+
+  const matchCreated = await MatchModel.create(newMatch);
+
+  return res.status(201).json(matchCreated);
+};
