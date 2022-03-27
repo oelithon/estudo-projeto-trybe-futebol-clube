@@ -1,5 +1,6 @@
 import * as express from 'express';
-import { Request, Response } from 'express';
+
+import LeaderboardHome from '../controllers/LeaderboardHome';
 
 export default class RouteLeaderboard {
   public router: express.Router;
@@ -9,8 +10,6 @@ export default class RouteLeaderboard {
 
     this.router
       .route('/leaderboard/home')
-      .get((_req: Request, res: Response) => {
-        res.status(200).json({ message: 'tudo certo' });
-      });
+      .get(LeaderboardHome);
   }
 }
