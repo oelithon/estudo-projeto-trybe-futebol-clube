@@ -4,6 +4,7 @@ import * as cors from 'cors';
 import RouteLogin from './database/routers/routeLogin';
 import RouteClubs from './database/routers/routeClubs';
 import RouteMatchs from './database/routers/routeMatchs';
+import RouteLeaderboard from './database/routers/routeLeaderboard';
 
 class App {
   public app: express.Express;
@@ -32,6 +33,7 @@ class App {
       new RouteLogin().router,
       new RouteClubs().router,
       new RouteMatchs().router,
+      new RouteLeaderboard().router,
     );
   }
 
