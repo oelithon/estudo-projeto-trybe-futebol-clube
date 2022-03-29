@@ -61,7 +61,7 @@ const setClubValues = (clubInMatches: MatchClub, statisticsClub: Leaderboard) =>
   return result;
 };
 
-const listBestClubs = async () => {
+const listClubStatistics = async () => {
   const homeClub: Leaderboard[] = []; // Array de Clubes.
 
   const allMatches = await listAllMatches();
@@ -93,9 +93,15 @@ const listBestClubs = async () => {
 };
 
 const LeaderboardHome = async (_req: Request, res: Response) => {
-  const bastClubs = await listBestClubs();
+  const result = await listClubStatistics();
 
-  res.status(200).json(bastClubs);
+  result.sort((a, b) => a.goalsOwn - b.goalsOwn);
+  result.sort((a, b) => b.goalsFavor - a.goalsFavor);
+  result.sort((a, b) => b.goalsBalance - a.goalsBalance);
+  result.sort((a, b) => b.totalVictories - a.totalVictories);
+  result.sort((a, b) => b.totalPoints - a.totalPoints);
+
+  res.status(200).json(result);
 };
 
 export default LeaderboardHome;
